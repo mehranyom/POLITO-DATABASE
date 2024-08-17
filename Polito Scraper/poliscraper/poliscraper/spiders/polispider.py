@@ -1,5 +1,5 @@
 import scrapy
-
+from poliscraper.items import Poliprofessors
 
 class PolispiderSpider(scrapy.Spider):
     name = "polispider"
@@ -31,10 +31,10 @@ class PolispiderSpider(scrapy.Spider):
         department = response.css('section.dettagli h2 a::text').get()
         mail = response.xpath('//section[contains(@class, "dettagli")]//a[starts-with(@href, "mailto:")]/text()').get()
 
+        prof_item = Poliprofessors()
         
-        yield{
-            'name': name,
-            'title': title,
-            'department': department,
-            'email': mail
-        }
+        prof_item['name'] = name
+        prof_item['title'] = title
+        prof_item['department'] = department
+        prof_item['email'] = mail
+        yield prof_item

@@ -6,7 +6,10 @@
 import scrapy
 
 
-class PoliscraperItem(scrapy.Item):
+class Poliprofessors(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    name = scrapy.Field()
+    title = scrapy.Field()
+    department = scrapy.Field()
+    email = scrapy.Field()
