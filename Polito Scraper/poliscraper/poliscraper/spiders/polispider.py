@@ -31,6 +31,7 @@ class PolispiderSpider(scrapy.Spider):
         title = response.css('section.dettagli h2::text').get()
         department = response.css('section.dettagli h2 a::text').get()
         mail = response.xpath('//section[contains(@class, "dettagli")]//a[starts-with(@href, "mailto:")]/text()').get()
+        image_src = response.xpath('//section[contains(@class, "foto")]//img/@src').get()
         
         prof_item = Professors()
         
@@ -39,6 +40,7 @@ class PolispiderSpider(scrapy.Spider):
         prof_item['title'] = title
         prof_item['department'] = department
         prof_item['email'] = mail
+        prof_item['image'] = image_src
         yield prof_item
         
         course_check_list = list()

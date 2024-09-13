@@ -14,6 +14,7 @@ class Professors(scrapy.Item):
     title = scrapy.Field()
     department = scrapy.Field()
     email = scrapy.Field()
+    image = scrapy.Field()
 
 class Teach(scrapy.Item):
     professor_id = scrapy.Field()

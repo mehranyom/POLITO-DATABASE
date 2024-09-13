@@ -31,7 +31,8 @@ class SavingToMysqlPipeline(object):
             "Name VARCHAR(255), "
             "Title VARCHAR(255), "
             "Department VARCHAR(255), "
-            "Email VARCHAR(255))"
+            "Email VARCHAR(255),"
+            "Image VARCHAR(2048))"
         )
         create_teaches_table = (
             "CREATE TABLE IF NOT EXISTS teaches ("
@@ -65,15 +66,16 @@ class SavingToMysqlPipeline(object):
         # Check if the item is of type Professors
         if isinstance(item, Professors):
             add_professor = (
-                "INSERT INTO professors (PID, Name, Title, Department, Email) "
-                "VALUES (%s, %s, %s, %s, %s)"
+                "INSERT INTO professors (PID, Name, Title, Department, Email, Image) "
+                "VALUES (%s, %s, %s, %s, %s, %s)"
             )
             data_professor = (
                 item.get("pid"), 
                 item.get("name"), 
                 item.get("title"), 
                 item.get("department"), 
-                item.get("email")
+                item.get("email"),
+                item.get("image")
             )
             self.curr.execute(add_professor, data_professor)
 
